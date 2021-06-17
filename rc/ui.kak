@@ -6,11 +6,15 @@ define-command -override ui -docstring 'ui' %{
 
 # Options
 
-set-face global search 'default,blue+bi'
+set-face global Search 'default,blue+bi'
+set-face global TrailingSpace 'Error'
+set-face global CursorLine "default,rgba:77777720"
+set-face global CursorColumn "default,rgba:77777720"
+set-face global TodoComment "yellow,default+rb"
 
-declare-option str ui_cursorline_bg 'rgba:005F5F40'
-declare-option str ui_cursorcolumn_bg 'rgba:005F5F40'
 declare-option str-list ui_line_numbers_flags
+declare-option str-list ui_whitespaces_flags
+declare-option str ui_todo_keywords_regex "\b(TODO|FIXME|XXX|NOTE)\b"
 
 # Mappings
 
@@ -18,11 +22,13 @@ map -docstring 'toggle cursor line' global ui c ': ui-cursorline-toggle<ret>'
 map -docstring 'toggle cursor column' global ui C ': ui-cursorcolumn-toggle<ret>'
 map -docstring 'toggle line numbers' global ui l ': ui-line-numbers-toggle<ret>'
 map -docstring 'toggle relative line numbers' global ui r ': ui-line-numbers-relative-toggle<ret>'
-map -docstring 'toggle whitespaces' global ui w ': ui-whitespaces-toggle<ret>'
+map -docstring 'toggle whitespaces' global ui s ': ui-whitespaces-toggle<ret>'
+map -docstring 'toggle trailing spaces' global ui t ': ui-trailing-spaces-toggle<ret>'
 map -docstring 'toggle wrap' global ui w ': ui-wrap-toggle<ret>'
 map -docstring 'toggle matching' global ui m ': ui-matching-toggle<ret>'
 map -docstring 'toggle git diff' global ui d ': ui-git-diff-toggle<ret>'
-map -docstring 'toggle search' global ui s ': ui-search-toggle<ret>'
+map -docstring 'toggle search' global ui / ': ui-search-toggle<ret>'
+map -docstring 'toggle TODO' global ui x ': ui-todos-toggle<ret>'
 
 # Commands
 
@@ -36,7 +42,7 @@ define-command -override -hidden ui-line-numbers-toggle -docstring 'toggle line 
 
 define-command -override -hidden ui-line-numbers-relative-toggle -docstring 'toggle relative line numbers' %{
     try %{
-        add-highlighter window/line-numbers number-lines -relative
+        add-highlighter window/line-numbers number-lines -relative %opt{ui_line_numbers_flags}
     } catch %{
         remove-highlighter window/line-numbers
     }
@@ -44,7 +50,7 @@ define-command -override -hidden ui-line-numbers-relative-toggle -docstring 'tog
 
 define-command -override -hidden ui-whitespaces-toggle -docstring 'toggle whitespaces' %{
     try %{
-        add-highlighter window/whitespaces show-whitespaces
+        add-highlighter window/whitespaces show-whitespaces %opt{ui_whitespaces_flags}
     } catch %{
         remove-highlighter window/whitespaces
     }
@@ -68,7 +74,23 @@ define-command -override -hidden ui-matching-toggle -docstring 'toggle matching'
 
 define-command -override -hidden ui-search-toggle -docstring 'toggle search' %{
     try %{
-        add-highlighter window/search dynregex '%reg{/}' 0:search
+        add-highlighter window/search dynregex '%reg{/}' 0:Search
+    } catch %{
+        remove-highlighter window/search
+    }
+}
+
+define-command -override -hidden ui-trailing-spaces-toggle -docstring 'toggle trailing spaces' %{
+    try %{
+        add-highlighter window/search regex \h+$ 0:TrailingSpace
+    } catch %{
+        remove-highlighter window/search
+    }
+}
+
+define-command -override -hidden ui-todos-toggle -docstring 'toggle TODO comments' %{
+    try %{
+        add-highlighter window/search regex %opt{ui_todo_keywords_regex} 0:TodoComment
     } catch %{
         remove-highlighter window/search
     }
@@ -92,7 +114,6 @@ define-command -override -hidden ui-git-diff-toggle -docstring 'toggle git diff'
 
 define-command -override -hidden ui-cursorline-toggle -docstring 'toggle cursor line' %{
     try %{
-        set-face window CursorLine "default,%opt{ui_cursorline_bg}"
         add-highlighter window/cursorline line %val{cursor_line} CursorLine
         hook window -group cursorline NormalKey .* %{
             remove-highlighter window/cursorline
@@ -110,7 +131,6 @@ define-command -override -hidden ui-cursorline-toggle -docstring 'toggle cursor 
 
 define-command -override -hidden ui-cursorcolumn-toggle -docstring 'toggle cursor column' %{
     try %{
-        set-face window CursorColumn "default,%opt{ui_cursorcolumn_bg}"
         add-highlighter window/cursorcolumn column %val{cursor_column} CursorColumn
         hook window -group cursorcolumn NormalKey .* %{
             remove-highlighter window/cursorcolumn
