@@ -1,12 +1,10 @@
 = ui.kak
 
-Toggle UI options in [Kakoune].
-
-[kakoune]: https://kakoune.org
+Toggle UI options in http://kakoune.org[Kakoune].
 
 == Installation
 
-Add [`ui.kak`](rc/ui.kak) to your autoload or source it manually.
+Add link:rc/ui.kak[`ui.kak`] to your autoload or source it manually.
 
 == What's included
 
