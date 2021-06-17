@@ -2,6 +2,8 @@
 
 Toggle UI options in http://kakoune.org[Kakoune].
 
+image::screenshot.png[]
+
 == Installation
 
 Add link:rc/ui.kak[`ui.kak`] to your autoload or source it manually.
