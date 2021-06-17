@@ -20,10 +20,7 @@ declare-option str ui_todo_keywords_regex "\b(TODO|FIXME|XXX|NOTE)\b"
 
 # Mappings
 
-map -docstring 'toggle cursor line' global ui c ': ui-cursorline-toggle<ret>'
-map -docstring 'toggle cursor column' global ui C ': ui-cursorcolumn-toggle<ret>'
 map -docstring 'toggle line numbers' global ui l ': ui-line-numbers-toggle<ret>'
-# map -docstring 'toggle relative line numbers' global ui r ': ui-line-numbers-relative-toggle<ret>'
 map -docstring 'toggle whitespaces' global ui s ': ui-whitespaces-toggle<ret>'
 map -docstring 'toggle trailing spaces' global ui t ': ui-trailing-spaces-toggle<ret>'
 map -docstring 'toggle wrap' global ui w ': ui-wrap-toggle<ret>'
@@ -31,70 +28,84 @@ map -docstring 'toggle matching' global ui m ': ui-matching-toggle<ret>'
 map -docstring 'toggle git diff' global ui d ': ui-git-diff-toggle<ret>'
 map -docstring 'toggle search' global ui / ': ui-search-toggle<ret>'
 map -docstring 'toggle TODO' global ui x ': ui-todos-toggle<ret>'
+map -docstring 'toggle cursor line' global ui c ': ui-cursorline-toggle<ret>'
+map -docstring 'toggle cursor column' global ui C ': ui-cursorcolumn-toggle<ret>'
 
 # Commands
 
 define-command -override -hidden ui-line-numbers-toggle -docstring 'toggle line numbers' %{
     try %{
         add-highlighter window/line-numbers number-lines %opt{ui_line_numbers_flags}
+        echo -markup "{Information}line numbers enabled"
     } catch %{
         remove-highlighter window/line-numbers
+        echo -markup "{Information}line numbers disabled"
     }
 }
-
-# define-command -override -hidden ui-line-numbers-relative-toggle -docstring 'toggle relative line numbers' %{
-#     try %{
-#         add-highlighter window/line-numbers number-lines -relative %opt{ui_line_numbers_flags}
-#     } catch %{
-#         remove-highlighter window/line-numbers
-#     }
-# }
 
 define-command -override -hidden ui-whitespaces-toggle -docstring 'toggle whitespaces' %{
     try %{
         add-highlighter window/whitespaces show-whitespaces %opt{ui_whitespaces_flags}
+        echo -markup "{Information}whitespaces enabled"
     } catch %{
         remove-highlighter window/whitespaces
+        echo -markup "{Information}whitespaces disabled"
     }
 }
 
 define-command -override -hidden ui-wrap-toggle -docstring 'toggle soft wrap' %{
     try %{
         add-highlighter window/wrap wrap %opt{ui_wrap_flags}
+        echo -markup "{Information}soft wrap enabled"
     } catch %{
         remove-highlighter window/wrap
+        echo -markup "{Information}soft wrap disabled"
     }
 }
 
-define-command -override -hidden ui-matching-toggle -docstring 'toggle matching' %{
+define-command -override -hidden ui-matching-toggle -docstring 'toggle matching char' %{
     try %{
         add-highlighter window/matching show-matching
+        echo -markup "{Information}matching char enabled"
     } catch %{
         remove-highlighter window/matching
+        echo -markup "{Information}matching char disabled"
     }
 }
 
 define-command -override -hidden ui-search-toggle -docstring 'toggle search' %{
     try %{
         add-highlighter window/search dynregex '%reg{/}' 0:Search
+        hook global NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
+            add-highlighter window/search dynregex '%reg{/}' 0:Search
+        }}
+        hook global NormalKey <esc> %{ try %{
+            remove-highlighter window/search
+        }}
+        echo -markup "{Information}search enabled"
     } catch %{
         remove-highlighter window/search
+        echo -markup "{Information}search disabled"
     }
 }
 
 define-command -override -hidden ui-trailing-spaces-toggle -docstring 'toggle trailing spaces' %{
     try %{
         add-highlighter window/trailing-spaces regex '\h+$' 0:TrailingSpace
+        echo -markup "{Information}trailing spaces enabled"
     } catch %{
         remove-highlighter window/trailing-spaces
+        echo -markup "{Information}trailing spaces disabled"
     }
 }
 
 define-command -override -hidden ui-todos-toggle -docstring 'toggle TODO comments' %{
     try %{
         add-highlighter window/todo-comments regex %opt{ui_todo_keywords_regex} 0:TodoComment
+        echo -markup "{Information}TODO comments enabled"
     } catch %{
         remove-highlighter window/todo-comments
+        echo -markup "{Information}TODO comments disabled"
     }
 }
 
@@ -108,9 +119,11 @@ define-command -override -hidden ui-git-diff-toggle -docstring 'toggle git diff'
         hook window -group ui-git-diff BufReload .* %{
             git update-diff
         }
+        echo -markup "{Information}git diff enabled"
     } catch %{
         remove-highlighter window/git-diff
         remove-hooks window ui-git-diff
+        echo -markup "{Information}git diff disabled"
     }
 }
 
@@ -125,9 +138,11 @@ define-command -override -hidden ui-cursorline-toggle -docstring 'toggle cursor 
             remove-highlighter window/cursorline
             add-highlighter window/cursorline line %val{cursor_line} CursorLine
         }
+        echo -markup "{Information}cursor line enabled"
     } catch %{
         remove-highlighter window/cursorline
         remove-hooks window cursorline
+        echo -markup "{Information}cursor line disabled"
     }
 }
 
@@ -142,9 +157,11 @@ define-command -override -hidden ui-cursorcolumn-toggle -docstring 'toggle curso
             remove-highlighter window/cursorcolumn
             add-highlighter window/cursorcolumn column %val{cursor_column} CursorColumn
         }
+        echo -markup "{Information}cursor column enabled"
     } catch %{
         remove-highlighter window/cursorcolumn
         remove-hooks window cursorcolumn
+        echo -markup "{Information}cursor column disabled"
     }
 }
 
