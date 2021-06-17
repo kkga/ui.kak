@@ -30,7 +30,7 @@ Add link:rc/ui.kak[`ui.kak`] to your autoload or source it manually.
     When enabled, this command also adds hooks for automatically updating git diff on `BufWritePost` and `BufReload`. Disabling removes the hooks.
 
 *ui-search-toggle*::
-    Dynamically display matches results using `Search` face.
+    Dynamically display search matches using `Search` face.
     When enabled, this command also adds hooks to highlight search matches on `/`,`?`,`*`,`n` and `N` keys.
     Pressing `<esc>` removes the highlights.
 
