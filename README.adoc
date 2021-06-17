@@ -1,0 +1,34 @@
+= ui.kak
+
+Toggle UI options in [Kakoune].
+
+[kakoune]: https://kakoune.org
+
+== Installation
+
+Add [`ui.kak`](rc/ui.kak) to your autoload or source it manually.
+
+== What's included
+
+`ui.kak` provides a `ui` mode for toggling various user interface options (highlighters) and related hooks. All of the following commands are grouped in the in the `ui` user mode with dedicated key mappings.
+
+*ui-line-numbers-toggle*::
+    Display line numbers.
+
+*ui-whitespaces-toggle*::
+    Display whitespaces.
+
+*ui-trailing-spaces-toggle*::
+    Display trailing spaces.
+
+*ui-wrap-toggle*::
+    Wrap lines to window width.
+
+TODO
+
+== Suggested configuration
+
+[source,kak]
+----
+dasdfasdf
+----
