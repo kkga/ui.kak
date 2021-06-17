@@ -6,14 +6,16 @@ define-command -override ui -docstring 'ui' %{
 
 # Options
 
-set-face global Search 'default,blue+bi'
-set-face global TrailingSpace 'Error'
+set-face global Search default,blue+bui
+set-face global TrailingSpace Error
 set-face global CursorLine "default,rgba:77777720"
 set-face global CursorColumn "default,rgba:77777720"
+set-face global WrapMarker "default,rgba:77777720"
 set-face global TodoComment "yellow,default+rb"
 
 declare-option str-list ui_line_numbers_flags
 declare-option str-list ui_whitespaces_flags
+declare-option str-list ui_wrap_flags
 declare-option str ui_todo_keywords_regex "\b(TODO|FIXME|XXX|NOTE)\b"
 
 # Mappings
@@ -21,7 +23,7 @@ declare-option str ui_todo_keywords_regex "\b(TODO|FIXME|XXX|NOTE)\b"
 map -docstring 'toggle cursor line' global ui c ': ui-cursorline-toggle<ret>'
 map -docstring 'toggle cursor column' global ui C ': ui-cursorcolumn-toggle<ret>'
 map -docstring 'toggle line numbers' global ui l ': ui-line-numbers-toggle<ret>'
-map -docstring 'toggle relative line numbers' global ui r ': ui-line-numbers-relative-toggle<ret>'
+# map -docstring 'toggle relative line numbers' global ui r ': ui-line-numbers-relative-toggle<ret>'
 map -docstring 'toggle whitespaces' global ui s ': ui-whitespaces-toggle<ret>'
 map -docstring 'toggle trailing spaces' global ui t ': ui-trailing-spaces-toggle<ret>'
 map -docstring 'toggle wrap' global ui w ': ui-wrap-toggle<ret>'
@@ -40,13 +42,13 @@ define-command -override -hidden ui-line-numbers-toggle -docstring 'toggle line 
     }
 }
 
-define-command -override -hidden ui-line-numbers-relative-toggle -docstring 'toggle relative line numbers' %{
-    try %{
-        add-highlighter window/line-numbers number-lines -relative %opt{ui_line_numbers_flags}
-    } catch %{
-        remove-highlighter window/line-numbers
-    }
-}
+# define-command -override -hidden ui-line-numbers-relative-toggle -docstring 'toggle relative line numbers' %{
+#     try %{
+#         add-highlighter window/line-numbers number-lines -relative %opt{ui_line_numbers_flags}
+#     } catch %{
+#         remove-highlighter window/line-numbers
+#     }
+# }
 
 define-command -override -hidden ui-whitespaces-toggle -docstring 'toggle whitespaces' %{
     try %{
@@ -58,7 +60,7 @@ define-command -override -hidden ui-whitespaces-toggle -docstring 'toggle whites
 
 define-command -override -hidden ui-wrap-toggle -docstring 'toggle soft wrap' %{
     try %{
-        add-highlighter window/wrap wrap -word
+        add-highlighter window/wrap wrap %opt{ui_wrap_flags}
     } catch %{
         remove-highlighter window/wrap
     }
@@ -82,17 +84,17 @@ define-command -override -hidden ui-search-toggle -docstring 'toggle search' %{
 
 define-command -override -hidden ui-trailing-spaces-toggle -docstring 'toggle trailing spaces' %{
     try %{
-        add-highlighter window/search regex \h+$ 0:TrailingSpace
+        add-highlighter window/trailing-spaces regex '\h+$' 0:TrailingSpace
     } catch %{
-        remove-highlighter window/search
+        remove-highlighter window/trailing-spaces
     }
 }
 
 define-command -override -hidden ui-todos-toggle -docstring 'toggle TODO comments' %{
     try %{
-        add-highlighter window/search regex %opt{ui_todo_keywords_regex} 0:TodoComment
+        add-highlighter window/todo-comments regex %opt{ui_todo_keywords_regex} 0:TodoComment
     } catch %{
-        remove-highlighter window/search
+        remove-highlighter window/todo-comments
     }
 }
 
@@ -162,8 +164,9 @@ define-command -override -hidden ui-cursorcolumn-toggle -docstring 'toggle curso
 # [x] git diff
 # [x] relative number
 # [x] cursor column
+# [x] trailing space
+# [x] hl search
+#     find a smart way to toggle it
 # [ ] lsp line flags
-# [ ] trailing space
-# [ ] TODO/FIXME/XXX/NOTE
+# [x] TODO/FIXME/XXX/NOTE
 # [???] lint line flags
-# hl search
