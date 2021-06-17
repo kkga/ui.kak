@@ -22,7 +22,26 @@ Add link:rc/ui.kak[`ui.kak`] to your autoload or source it manually.
 *ui-wrap-toggle*::
     Wrap lines to window width.
 
-TODO
+*ui-matching-toggle*::
+    Display matching char.
+
+*ui-git-diff-toggle*::
+    Display https://github.com/mawww/kakoune/blob/master/rc/tools/git.kak[git diff].
+    When enabled, this command also adds hooks for automatically updating git diff on `BufWritePost` and `BufReload`. Disabling removes the hooks.
+
+*ui-search-toggle*::
+    Dynamically display matches results using `Search` face.
+    When enabled, this command also adds hooks to highlight search matches on `/`,`?`,`*`,`n` and `N` keys.
+    Pressing `<esc>` removes the highlights.
+
+*ui-todos-toggle*::
+    Display `TODO`, `FIXME`, `XXX`, `NOTE` in buffer using `TodoComment` face.
+
+*ui-cursorline-toggle*::
+    Display current cursor line using `CursorLine` face.
+
+*ui-cursorcolumn-toggle*::
+    Display current cursor column using `CursorColumn` face.
 
 == Suggested configuration
 
