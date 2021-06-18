@@ -75,7 +75,7 @@ define-command -override -hidden ui-matching-toggle -docstring 'toggle matching 
 
 define-command -override -hidden ui-search-toggle -docstring 'toggle search' %{
     try %{
-        add-highlighter window/search dynregex '%reg{/}' 0:Search
+        # add-highlighter window/search dynregex '%reg{/}' 0:Search
         hook window -group ui-search NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
             add-highlighter window/search dynregex '%reg{/}' 0:Search
         }}
