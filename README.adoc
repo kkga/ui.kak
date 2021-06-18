@@ -57,7 +57,7 @@ map global user -docstring "UI mode" u ': enter-user-mode ui<ret>'
 
 === Enabling commands on start
 
-To set default options when Kakoune starts, call them in a `WinCreate` hook, for example:
+To enable commands by default when Kakoune starts, call them in a `WinCreate` hook, for example:
 
 [source,kak]
 ----
