@@ -10,8 +10,9 @@ Add link:rc/ui.kak[`ui.kak`] to your autoload or source it manually.
 
 == What's included
 
-* Commands to toggle various user interface options (highlighters) and related hooks;
-* A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
+Commands to toggle various user interface options (highlighters) and related hooks.
+
+A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] is defined with key mappings for all commands.
 
 *ui-line-numbers-toggle*::
     Display line numbers.
