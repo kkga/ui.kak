@@ -10,40 +10,40 @@ Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 
 == What's included
 
-* Commands for toggling various user interface options (highlighters) and related hooks;
+* Commands to toggle various user interface options (highlighters) and related hooks;
 * A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
 
-`<l>` `*ui-line-numbers-toggle*`::
+*ui-line-numbers-toggle* `<l>`::
     Display line numbers.
 
-`<s>` `*ui-whitespaces-toggle*`::
+*ui-whitespaces-toggle* `<s>`::
     Display whitespaces.
 
-`<t>` `*ui-trailing-spaces-toggle*`::
+*ui-trailing-spaces-toggle* `<t>`::
     Display trailing spaces.
 
-`<w>` `*ui-wrap-toggle*`::
+*ui-wrap-toggle* `<w>`::
     Wrap lines to window width.
 
-`<m>` `*ui-matching-toggle*`::
+*ui-matching-toggle* `<m>`::
     Display matching char.
 
-`<d>` `*ui-git-diff-toggle*`::
+*ui-git-diff-toggle* `<d>`::
     Display https://github.com/mawww/kakoune/blob/master/rc/tools/git.kak[git diff].
     When enabled, this command also adds hooks for automatically updating git diff on `BufWritePost` and `BufReload`. Disabling removes the hooks.
 
-`</>` `*ui-search-toggle*`::
+*ui-search-toggle* `</>`::
     Dynamically display search matches using `Search` face.
     When enabled, this command also adds hooks to highlight search matches on `/`,`?`,`*`,`n` and `N` keys.
     Pressing `<esc>` removes the highlights.
 
-`<x>` `*ui-todos-toggle*`::
+*ui-todos-toggle* `<x>`::
     Display `TODO`, `FIXME`, `XXX`, `NOTE` in buffer using `TodoComment` face.
 
-`<c>` `*ui-cursorline-toggle*`::
+*ui-cursorline-toggle* `<c>`::
     Display current cursor line using `CursorLine` face.
 
-`<C>` `*ui-cursorcolumn-toggle*`::
+*ui-cursorcolumn-toggle* `<s>`::
     Display current cursor column using `CursorColumn` face.
 
 == Suggested configuration
