@@ -14,11 +14,18 @@ Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 * A +ui+ link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
 
 [options="header"]
-|============================================================
-| Mapping | Command
-| +l+     | *+ui-line-numbers-toggle+*:: Display line numbers.
-| +s+     | *+ui-whitespaces-toggle+*:: Display whitespaces.
-|============================================================
+|===
+| Mapping
+| Command
+
+| +l+
+| *+ui-line-numbers-toggle+*
+    :: Display line numbers.
+
+| +s+
+| *+ui-whitespaces-toggle+*
+    :: Display whitespaces.
+|===
 
 *+ui-line-numbers-toggle+*::
     Display line numbers.
