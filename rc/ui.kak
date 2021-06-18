@@ -164,27 +164,3 @@ define-command -override ui-cursorcolumn-toggle -docstring 'toggle cursor column
         echo -markup "{Information}cursor column disabled"
     }
 }
-
-# define-command -override ui-lint-diagnostics-toggle -docstring 'toggle lint diagnostics' %{
-#     try %{
-#         lint
-#     } catch %{
-#         remove-highlighter window/lint
-#         remove-hooks window lint-diagnostics
-#     }
-# }
-
-# define-command lint-hide-diagnostics -docstring "Hide line markers and disable automatic diagnostic displaying" %{
-#     remove-highlighter window/lint
-#     remove-hooks window lint-diagnostics
-# }
-# [x] git diff
-# [x] relative number
-# [x] cursor column
-# [x] trailing space
-# [x] hl search
-#     find a smart way to toggle it
-# [ ] lsp line flags
-# [ ] lsp references
-# [x] TODO/FIXME/XXX/NOTE
-# [???] lint line flags
