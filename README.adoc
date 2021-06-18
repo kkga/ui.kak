@@ -70,20 +70,23 @@ hook global WinCreate .* %{
 }
 ----
 
-=== Custom parameters
+=== Custom options
 
 The following options can be changed customize the appearance of some highlighters.
 
 `ui_line_numbers_flags`::
-    Custom flags for *ui-line-numbers-toggle*.
+    custom flags for *ui-line-numbers-toggle*
 
 `ui_whitespaces_flags`::
-    Custom flags for *ui-whitespaces-toggle*.
+    custom flags for *ui-whitespaces-toggle*
 
 `ui_wrap_flags`::
-    Custom flags for *ui-wrap-toggle*.
+    custom flags for *ui-wrap-toggle*
 
 Full list of applicable flags can be found https://github.com/mawww/kakoune/blob/master/doc/pages/highlighters.asciidoc#convenient-highlighters[here].
+
+`ui_todo_keywords_regex`::
+    custom regex for *ui-todos-toggle*, default `\b(TODO|FIXME|XXX|NOTE)\b`
 
 [source,kak]
 ----
@@ -93,3 +96,22 @@ set-option global ui_line_numbers_flags -relative -hlcursor -separator " "
 # wrap at 80 chars, at word boundaries and use "..." for marker
 set-option global ui_wrap_flags -width 80 -word -marker ...
 ----
+
+=== Custom faces
+
+The following custom faces are used by some highlighters.
+
+*Search*::
+    face used by the `ui-search-toggle` command, default: `+bu@MatchingChar`
+
+*TrailingSpace*::
+    face used by the `ui-whitespaces-toggle` command, default: `@Error`
+
+*TodoComment*::
+    face used by the `ui-todos-toggle` command, default: `b@Information`
+
+*CursorLine*::
+    face used by the `ui-cursorline-toggle` command, default: `default,rgba:77777720`
+
+*CursorColumn*::
+    face used by the `ui-cursorcolumn-toggle` command, default: `default,rgba:77777720`

@@ -8,10 +8,9 @@ define-command -override ui -docstring 'ui' %{
 
 set-face global Search +bu@MatchingChar
 set-face global TrailingSpace Error
+set-face global TodoComment b@Information
 set-face global CursorLine "default,rgba:77777720"
 set-face global CursorColumn "default,rgba:77777720"
-set-face global WrapMarker "default,rgba:77777720"
-set-face global TodoComment "yellow,default+rb"
 
 declare-option str-list ui_line_numbers_flags
 declare-option str-list ui_whitespaces_flags
