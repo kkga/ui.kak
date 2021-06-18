@@ -4,11 +4,11 @@ Toggle UI options in http://kakoune.org[Kakoune].
 
 image::screenshot.png[]
 
-== Installation
+=== Installation
 
 Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 
-== What's included
+=== What's included
 
 * Commands to toggle various user interface options (highlighters) and related hooks;
 * A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
@@ -46,26 +46,50 @@ Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 *ui-cursorcolumn-toggle* `<s>`::
     Display current cursor column using `CursorColumn` face.
 
-== Enabling commands on start
+=== Configuration example
+
+The mode can be entered by a `ui` command or by a custom keymapping:
 
 [source,kak]
 ----
-# Example:
+map global user -docstring "UI mode" u ': enter-user-mode ui<ret>'
+----
 
+==== Enabling commands on start
+
+To set default options when Kakoune starts, call them in a `WinCreate` hook, for example:
+
+[source,kak]
+----
 hook global WinCreate .* %{
+    ui-line-numbers-toggle
     ui-cursorline-toggle
     ui-trailing-spaces-toggle
-    ui-search-toggle
     ui-matching-toggle
+    ui-search-toggle
 }
 ----
 
-== Custom parameters
+==== Custom parameters
+
+The following options can be changed customize the appearance of some highlighters.
+
+`ui_line_numbers_flags`::
+    Custom flags for *ui-line-numbers-toggle*.
+
+`ui_whitespaces_flags`
+    Custom flags for *ui-whitespaces-toggle*.
+
+`ui_wrap_flags`
+    Custom flags for *ui-wrap-toggle*.
+
+Full list of applicable flags can be found https://github.com/mawww/kakoune/blob/master/doc/pages/highlighters.asciidoc#convenient-highlighters[here].
 
 [source,kak]
 ----
-# Example:
+# make lines numbers relative, highlight current line and use empty space for separator
+set-option global ui_line_numbers_flags -relative -hlcursor -separator " "
 
-set-option global ui_line_numbers_flags -hlcursor -separator " "
-set-option global ui_wrap_flags -word -width 80 -marker ...
+# wrap at 80 chars, at word boundaries and use "..." for marker
+set-option global ui_wrap_flags -width 80 -word -marker ...
 ----
