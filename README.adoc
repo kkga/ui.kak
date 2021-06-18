@@ -13,37 +13,37 @@ Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 * Commands for toggling various user interface options (highlighters) and related hooks;
 * A +ui+ link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
 
-+<l> *ui-line-numbers-toggle*+::
++<l>+ *ui-line-numbers-toggle*::
     Display line numbers.
 
-*ui-whitespaces-toggle*::
++<s>+ *ui-whitespaces-toggle*::
     Display whitespaces.
 
-*ui-trailing-spaces-toggle*::
++<t>+ *ui-trailing-spaces-toggle*::
     Display trailing spaces.
 
-*ui-wrap-toggle*::
++<w>+ *ui-wrap-toggle*::
     Wrap lines to window width.
 
-*ui-matching-toggle*::
++<m>+ *ui-matching-toggle*::
     Display matching char.
 
-*ui-git-diff-toggle*::
++<d>+ *ui-git-diff-toggle*::
     Display https://github.com/mawww/kakoune/blob/master/rc/tools/git.kak[git diff].
     When enabled, this command also adds hooks for automatically updating git diff on `BufWritePost` and `BufReload`. Disabling removes the hooks.
 
-*ui-search-toggle*::
++</>+ *ui-search-toggle*::
     Dynamically display search matches using `Search` face.
     When enabled, this command also adds hooks to highlight search matches on `/`,`?`,`*`,`n` and `N` keys.
     Pressing `<esc>` removes the highlights.
 
-*ui-todos-toggle*::
++<x>+ *ui-todos-toggle*::
     Display `TODO`, `FIXME`, `XXX`, `NOTE` in buffer using `TodoComment` face.
 
-*ui-cursorline-toggle*::
++<c>+ *ui-cursorline-toggle*::
     Display current cursor line using `CursorLine` face.
 
-*ui-cursorcolumn-toggle*::
++<C>+ *ui-cursorcolumn-toggle*::
     Display current cursor column using `CursorColumn` face.
 
 == Suggested configuration
