@@ -13,42 +13,42 @@ Add link:rc/ui.kak[`ui.kak`] to your autoload or source it manually.
 * Commands to toggle various user interface options (highlighters) and related hooks;
 * A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
 
-*ui-line-numbers-toggle* `<l>`::
+*ui-line-numbers-toggle*::
     Display line numbers.
 
-*ui-whitespaces-toggle* `<s>`::
+*ui-whitespaces-toggle*::
     Display whitespaces.
 
-*ui-trailing-spaces-toggle* `<t>`::
+*ui-trailing-spaces-toggle*::
     Display trailing spaces.
 
-*ui-wrap-toggle* `<w>`::
+*ui-wrap-toggle*::
     Wrap lines to window width.
 
-*ui-matching-toggle* `<m>`::
+*ui-matching-toggle*::
     Display matching char.
 
-*ui-git-diff-toggle* `<d>`::
+*ui-git-diff-toggle*::
     Display https://github.com/mawww/kakoune/blob/master/rc/tools/git.kak[git diff].
     When enabled, this command also adds hooks for automatically updating git diff on `BufWritePost` and `BufReload`. Disabling removes the hooks.
 
-*ui-search-toggle* `</>`::
+*ui-search-toggle*::
     Dynamically display search matches using `Search` face.
     When enabled, this command also adds hooks to highlight search matches on `/`,`?`,`*`,`n` and `N` keys.
     Pressing `<esc>` removes the highlights.
 
-*ui-todos-toggle* `<x>`::
+*ui-todos-toggle*::
     Display `TODO`, `FIXME`, `XXX`, `NOTE` in buffer using `TodoComment` face.
 
-*ui-cursorline-toggle* `<c>`::
+*ui-cursorline-toggle*::
     Display current cursor line using `CursorLine` face.
 
-*ui-cursorcolumn-toggle* `<s>`::
+*ui-cursorcolumn-toggle*::
     Display current cursor column using `CursorColumn` face.
 
 == Configuration example
 
-The mode can be entered by a `ui` command or by a custom keymapping:
+The mode can be entered by a `ui` command. Alternative, define a custom keymapping:
 
 [source,kak]
 ----
@@ -74,19 +74,21 @@ hook global WinCreate .* %{
 
 The following options can be changed customize the appearance of some highlighters.
 
-`ui_line_numbers_flags`::
-    custom flags for *ui-line-numbers-toggle*
-
-`ui_whitespaces_flags`::
-    custom flags for *ui-whitespaces-toggle*
-
-`ui_wrap_flags`::
-    custom flags for *ui-wrap-toggle*
-
 Full list of applicable flags can be found https://github.com/mawww/kakoune/blob/master/doc/pages/highlighters.asciidoc#convenient-highlighters[here].
 
+`ui_line_numbers_flags`::
+    custom flags for `ui-line-numbers-toggle`
+
+`ui_whitespaces_flags`::
+    custom flags for `ui-whitespaces-toggle`
+
+`ui_wrap_flags`::
+    custom flags for `ui-wrap-toggle`
+
 `ui_todo_keywords_regex`::
-    custom regex for *ui-todos-toggle*, default `\b(TODO|FIXME|XXX|NOTE)\b`
+    custom regex for `ui-todos-toggle`, default `\b(TODO|FIXME|XXX|NOTE)\b`
+
+Example:
 
 [source,kak]
 ----
