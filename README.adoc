@@ -6,17 +6,24 @@ image::screenshot.png[]
 
 == Installation
 
-Add link:rc/ui.kak[`ui.kak`] to your autoload or source it manually.
+Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 
 == What's included
 
-`ui.kak` provides a `ui` mode for toggling various user interface options (highlighters) and related hooks. All of the following commands are grouped in the in the `ui` user mode with dedicated key mappings.
+* Commands for toggling various user interface options (highlighters) and related hooks;
+* A +ui+ link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
 
-*ui-line-numbers-toggle*::
+[options="header"]
+|============================================================
+| Mapping | Command
+| +l+     | *+ui-line-numbers-toggle+*:: Display line numbers.
+| +s+     | *+ui-whitespaces-toggle+*:: Display whitespaces.
+|============================================================
+
+*+ui-line-numbers-toggle+*::
     Display line numbers.
 
-*ui-whitespaces-toggle*::
-    Display whitespaces.
+*ui-whitespaces-toggle*:: Display whitespaces.
 
 *ui-trailing-spaces-toggle*::
     Display trailing spaces.

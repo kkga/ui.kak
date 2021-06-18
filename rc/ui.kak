@@ -6,7 +6,7 @@ define-command -override ui -docstring 'ui' %{
 
 # Options
 
-set-face global Search default,blue+bui
+set-face global Search +bu@MatchingChar
 set-face global TrailingSpace Error
 set-face global CursorLine "default,rgba:77777720"
 set-face global CursorColumn "default,rgba:77777720"
@@ -76,15 +76,16 @@ define-command -override -hidden ui-matching-toggle -docstring 'toggle matching 
 define-command -override -hidden ui-search-toggle -docstring 'toggle search' %{
     try %{
         add-highlighter window/search dynregex '%reg{/}' 0:Search
-        hook global NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
+        hook window -group ui-search NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
             add-highlighter window/search dynregex '%reg{/}' 0:Search
         }}
-        hook global NormalKey <esc> %{ try %{
+        hook window -group ui-search NormalKey <esc> %{ try %{
             remove-highlighter window/search
         }}
         echo -markup "{Information}search enabled"
     } catch %{
         remove-highlighter window/search
+        remove-hooks window ui-search
         echo -markup "{Information}search disabled"
     }
 }
@@ -185,5 +186,6 @@ define-command -override -hidden ui-cursorcolumn-toggle -docstring 'toggle curso
 # [x] hl search
 #     find a smart way to toggle it
 # [ ] lsp line flags
+# [ ] lsp references
 # [x] TODO/FIXME/XXX/NOTE
 # [???] lint line flags
