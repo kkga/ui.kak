@@ -26,7 +26,7 @@ map -docstring 'toggle wrap' global ui w ': ui-wrap-toggle<ret>'
 map -docstring 'toggle matching' global ui m ': ui-matching-toggle<ret>'
 map -docstring 'toggle git diff' global ui d ': ui-git-diff-toggle<ret>'
 map -docstring 'toggle search' global ui / ': ui-search-toggle<ret>'
-map -docstring 'toggle TODO' global ui x ': ui-todos-toggle<ret>'
+map -docstring 'toggle todo comments' global ui x ': ui-todos-toggle<ret>'
 map -docstring 'toggle cursor line' global ui c ': ui-cursorline-toggle<ret>'
 map -docstring 'toggle cursor column' global ui C ': ui-cursorcolumn-toggle<ret>'
 
