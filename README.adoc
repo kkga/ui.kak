@@ -4,11 +4,11 @@ Toggle UI options in http://kakoune.org[Kakoune].
 
 image::screenshot.png[]
 
-=== Installation
+== Installation
 
 Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 
-=== What's included
+== What's included
 
 * Commands to toggle various user interface options (highlighters) and related hooks;
 * A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciidoc#user-modes[user mode] with key mappings for all commands.
@@ -46,7 +46,7 @@ Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 *ui-cursorcolumn-toggle* `<s>`::
     Display current cursor column using `CursorColumn` face.
 
-=== Configuration example
+== Configuration example
 
 The mode can be entered by a `ui` command or by a custom keymapping:
 
@@ -55,7 +55,7 @@ The mode can be entered by a `ui` command or by a custom keymapping:
 map global user -docstring "UI mode" u ': enter-user-mode ui<ret>'
 ----
 
-==== Enabling commands on start
+=== Enabling commands on start
 
 To set default options when Kakoune starts, call them in a `WinCreate` hook, for example:
 
@@ -70,7 +70,7 @@ hook global WinCreate .* %{
 }
 ----
 
-==== Custom parameters
+=== Custom parameters
 
 The following options can be changed customize the appearance of some highlighters.
 
