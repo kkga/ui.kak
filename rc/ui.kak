@@ -8,7 +8,7 @@ define-command -override ui -docstring 'ui' %{
 
 set-face global Search +bu@MatchingChar
 set-face global TrailingSpace Error
-set-face global TodoComment b@Information
+set-face global TodoComment +b@Information
 set-face global CursorLine "default,rgba:77777720"
 set-face global CursorColumn "default,rgba:77777720"
 
