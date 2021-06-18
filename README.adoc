@@ -77,10 +77,10 @@ The following options can be changed customize the appearance of some highlighte
 `ui_line_numbers_flags`::
     Custom flags for *ui-line-numbers-toggle*.
 
-`ui_whitespaces_flags`
+`ui_whitespaces_flags`::
     Custom flags for *ui-whitespaces-toggle*.
 
-`ui_wrap_flags`
+`ui_wrap_flags`::
     Custom flags for *ui-wrap-toggle*.
 
 Full list of applicable flags can be found https://github.com/mawww/kakoune/blob/master/doc/pages/highlighters.asciidoc#convenient-highlighters[here].
