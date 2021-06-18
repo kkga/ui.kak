@@ -49,7 +49,7 @@ A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciido
 
 == Configuration
 
-The mode can be entered by a `ui` command. Alternative, define a custom keymapping:
+The mode can be entered via a `ui` command. Alternatively, define a custom keymapping:
 
 [source,kak]
 ----
