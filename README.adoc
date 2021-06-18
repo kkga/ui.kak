@@ -47,7 +47,7 @@ A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciido
 *ui-cursorcolumn-toggle*::
     Display current cursor column using `CursorColumn` face.
 
-== Configuration example
+== Configuration
 
 The mode can be entered by a `ui` command. Alternative, define a custom keymapping:
 
