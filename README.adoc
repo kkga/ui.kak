@@ -46,9 +46,26 @@ Add link:rc/ui.kak[+ui.kak+] to your autoload or source it manually.
 *ui-cursorcolumn-toggle* `<s>`::
     Display current cursor column using `CursorColumn` face.
 
-== Suggested configuration
+== Enabling commands on start
 
 [source,kak]
 ----
-dasdfasdf
+# Example:
+
+hook global WinCreate .* %{
+    ui-cursorline-toggle
+    ui-trailing-spaces-toggle
+    ui-search-toggle
+    ui-matching-toggle
+}
+----
+
+== Custom parameters
+
+[source,kak]
+----
+# Example:
+
+set-option global ui_line_numbers_flags -hlcursor -separator " "
+set-option global ui_wrap_flags -word -width 80 -marker ...
 ----
