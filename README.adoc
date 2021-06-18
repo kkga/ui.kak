@@ -87,7 +87,7 @@ Full list of applicable flags can be found https://github.com/mawww/kakoune/blob
     custom flags for `ui-wrap-toggle`
 
 `ui_todo_keywords_regex`::
-    custom regex for `ui-todos-toggle`, default `\b(TODO|FIXME|XXX|NOTE)\b`
+    custom regex for `ui-todos-toggle`, default: `\b(TODO|FIXME|XXX|NOTE)\b`
 
 Example:
 
@@ -108,7 +108,7 @@ The following custom faces are used by some highlighters.
     face used by the `ui-search-toggle` command, default: `+bu@MatchingChar`
 
 *TrailingSpace*::
-    face used by the `ui-whitespaces-toggle` command, default: `@Error`
+    face used by the `ui-whitespaces-toggle` command, default: `Error`
 
 *TodoComment*::
     face used by the `ui-todos-toggle` command, default: `b@Information`
