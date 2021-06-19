@@ -130,18 +130,14 @@ define-command -override ui-git-diff-toggle -docstring 'toggle git diff' %{
 define-command -override ui-cursorline-toggle -docstring 'toggle cursor line' %{
     try %{
         add-highlighter window/cursorline line %val{cursor_line} CursorLine
-        hook window -group cursorline NormalKey .* %{
-            remove-highlighter window/cursorline
-            add-highlighter window/cursorline line %val{cursor_line} CursorLine
-        }
-        hook window -group cursorline InsertKey .* %{
+        hook window -group ui-cursorline RawKey .* %{
             remove-highlighter window/cursorline
             add-highlighter window/cursorline line %val{cursor_line} CursorLine
         }
         echo -markup "{Information}cursor line enabled"
     } catch %{
         remove-highlighter window/cursorline
-        remove-hooks window cursorline
+        remove-hooks window ui-cursorline
         echo -markup "{Information}cursor line disabled"
     }
 }
@@ -149,18 +145,14 @@ define-command -override ui-cursorline-toggle -docstring 'toggle cursor line' %{
 define-command -override ui-cursorcolumn-toggle -docstring 'toggle cursor column' %{
     try %{
         add-highlighter window/cursorcolumn column %val{cursor_column} CursorColumn
-        hook window -group cursorcolumn NormalKey .* %{
-            remove-highlighter window/cursorcolumn
-            add-highlighter window/cursorcolumn column %val{cursor_column} CursorColumn
-        }
-        hook window -group cursorcolumn InsertKey .* %{
+        hook window -group ui-cursorcolumn RawKey .* %{
             remove-highlighter window/cursorcolumn
             add-highlighter window/cursorcolumn column %val{cursor_column} CursorColumn
         }
         echo -markup "{Information}cursor column enabled"
     } catch %{
         remove-highlighter window/cursorcolumn
-        remove-hooks window cursorcolumn
+        remove-hooks window ui-cursorcolumn
         echo -markup "{Information}cursor column disabled"
     }
 }
