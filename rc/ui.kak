@@ -137,7 +137,6 @@ define-command -override ui-lint-toggle -docstring 'toggle lint diagnostics' %{
         hook window -group lint-diagnostics WinSetOption lint_flags=.* %{ info; lint-show-current-line }
         hook window -group lint-diagnostics BufWritePost .* %{ lint }
         hook window -group lint-diagnostics BufReload .* %{ lint }
-        lint
         echo -markup "{Information}lint diagnostics enabled"
     } catch %{
         # copy-pasta from rc/tools/lint.kak
