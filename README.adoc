@@ -31,11 +31,15 @@ A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciido
 
 *ui-git-diff-toggle*::
     Display https://github.com/mawww/kakoune/blob/master/rc/tools/git.kak[git diff].
-    When enabled, this command also adds hooks for automatically updating git diff on `BufWritePost` and `BufReload`. Disabling removes the hooks.
+    When enabled, adds hooks for automatically updating git diff on `BufWritePost` and `BufReload`. Disabling removes the hooks.
+
+*ui-lint-toggle*::
+    Display https://github.com/mawww/kakoune/blob/master/rc/tools/lint.kak[lint diagnostics].
+    When enabled, adds hooks for automatically updating lint diagnostics on `BufWritePost` and `BufReload`. Disabling removes the hooks.
 
 *ui-search-toggle*::
     Dynamically display search matches using `Search` face.
-    When enabled, this command also adds hooks to highlight search matches on `/`,`?`,`*`,`n` and `N` keys.
+    When enabled, adds hooks to highlight search matches on `/`,`?`,`*`,`n` and `N` keys.
     Pressing `<esc>` removes the highlights.
 
 *ui-todos-toggle*::

@@ -25,6 +25,7 @@ map -docstring 'toggle trailing spaces' global ui t ': ui-trailing-spaces-toggle
 map -docstring 'toggle wrap' global ui w ': ui-wrap-toggle<ret>'
 map -docstring 'toggle matching' global ui m ': ui-matching-toggle<ret>'
 map -docstring 'toggle git diff' global ui d ': ui-git-diff-toggle<ret>'
+map -docstring 'toggle lint diagnostics' global ui L ': ui-lint-toggle<ret>'
 map -docstring 'toggle search' global ui / ': ui-search-toggle<ret>'
 map -docstring 'toggle todo comments' global ui x ': ui-todos-toggle<ret>'
 map -docstring 'toggle cursor line' global ui c ': ui-cursorline-toggle<ret>'
@@ -127,6 +128,25 @@ define-command -override ui-git-diff-toggle -docstring 'toggle git diff' %{
     }
 }
 
+define-command -override ui-lint-toggle -docstring 'toggle lint diagnostics' %{
+    try %{
+        # copy-pasta from rc/tools/lint.kak
+        # Assume that if the highlighter is set, then hooks also are
+        add-highlighter window/lint flag-lines default lint_flags
+        hook window -group lint-diagnostics NormalIdle .* %{ lint-show-current-line }
+        hook window -group lint-diagnostics WinSetOption lint_flags=.* %{ info; lint-show-current-line }
+        hook window -group lint-diagnostics BufWritePost .* %{ lint }
+        hook window -group lint-diagnostics BufReload .* %{ lint }
+        lint
+        echo -markup "{Information}lint diagnostics enabled"
+    } catch %{
+        # copy-pasta from rc/tools/lint.kak
+        remove-highlighter window/lint
+        remove-hooks window lint-diagnostics
+        echo -markup "{Information}lint diagnostics disabled"
+    }
+}
+
 define-command -override ui-cursorline-toggle -docstring 'toggle cursor line' %{
     try %{
         add-highlighter window/cursorline line %val{cursor_line} CursorLine
@@ -156,3 +176,4 @@ define-command -override ui-cursorcolumn-toggle -docstring 'toggle cursor column
         echo -markup "{Information}cursor column disabled"
     }
 }
+
