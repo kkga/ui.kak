@@ -112,13 +112,13 @@ define-command -override ui-todos-toggle -docstring 'toggle TODO comments' %{
 
 define-command -override ui-git-diff-toggle -docstring 'toggle git diff' %{
     try %{
-        git update-diff
         add-highlighter window/git-diff flag-lines Default git_diff_flags
-        hook window -group ui-git-diff BufWritePost .* %{
-            git update-diff
-        }
-        hook window -group ui-git-diff BufReload .* %{
-            git update-diff
+        evaluate-commands %sh{
+            cd "$(dirname "$kak_buffile")"
+            git_dir="$(git rev-parse --show-toplevel 2>/dev/null)"
+            [ -n "$git_dir" ] && echo "git update-diff"
+            [ -n "$git_dir" ] && echo "hook window -group ui-git-diff BufWritePost .* %{ git update-diff }"
+            [ -n "$git_dir" ] && echo "hook window -group ui-git-diff BufReload .* %{ git update-diff }"
         }
         echo -markup "{Information}git diff enabled"
     } catch %{
@@ -133,10 +133,16 @@ define-command -override ui-lint-toggle -docstring 'toggle lint diagnostics' %{
         # copy-pasta from rc/tools/lint.kak
         # Assume that if the highlighter is set, then hooks also are
         add-highlighter window/lint flag-lines default lint_flags
-        hook window -group lint-diagnostics NormalIdle .* %{ lint-show-current-line }
+        hook window -group lint-diagnostics NormalIdle .* %{
+            lint-show-current-line
+        }
         hook window -group lint-diagnostics WinSetOption lint_flags=.* %{ info; lint-show-current-line }
-        hook window -group lint-diagnostics BufWritePost .* %{ lint }
-        hook window -group lint-diagnostics BufReload .* %{ lint }
+        hook window -group lint-diagnostics BufWritePost .* %{
+            try %{ lint }
+        }
+        hook window -group lint-diagnostics BufReload .* %{
+            try %{ lint }
+        }
         echo -markup "{Information}lint diagnostics enabled"
     } catch %{
         # copy-pasta from rc/tools/lint.kak
