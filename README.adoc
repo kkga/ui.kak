@@ -75,6 +75,23 @@ hook global WinCreate .* %{
 }
 ----
 
+=== Interacting with other plugins
+
+If you need to do something whenever a highlighter is added or removed, you can call commands in the `ui-hl-changed` User https://github.com/mawww/kakoune/blob/master/doc/pages/hooks.asciidoc[hook].
+
+As an example, to fix the placement of https://github.com/sawdust-and-diamonds/scrollbar.kak[Scrollbar.kak]'s highlighter when toggling various highlighters with `ui.kak`, create a `ui-hl-changed` User hook:
+
+[source,kak]
+----
+hook global WinCreate .* %{
+    ui-line-numbers-toggle
+    scrollbar-enable
+
+    # move scrollbar to left of stack whenever ui highlighters change
+    hook window User ui-hl-changed %{ move-scrollbar-to-left }
+}
+----
+
 === Custom options
 
 The following options can be changed customize the appearance of some highlighters.

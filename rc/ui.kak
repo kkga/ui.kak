@@ -41,6 +41,7 @@ define-command -override ui-line-numbers-toggle -docstring 'toggle line numbers'
         remove-highlighter window/line-numbers
         echo -markup "{Information}line numbers disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-whitespaces-toggle -docstring 'toggle whitespaces' %{
@@ -51,6 +52,7 @@ define-command -override ui-whitespaces-toggle -docstring 'toggle whitespaces' %
         remove-highlighter window/whitespaces
         echo -markup "{Information}whitespaces disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-wrap-toggle -docstring 'toggle soft wrap' %{
@@ -61,6 +63,7 @@ define-command -override ui-wrap-toggle -docstring 'toggle soft wrap' %{
         remove-highlighter window/wrap
         echo -markup "{Information}soft wrap disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-matching-toggle -docstring 'toggle matching char' %{
@@ -71,6 +74,7 @@ define-command -override ui-matching-toggle -docstring 'toggle matching char' %{
         remove-highlighter window/matching
         echo -markup "{Information}matching char disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-search-toggle -docstring 'toggle search' %{
@@ -88,6 +92,7 @@ define-command -override ui-search-toggle -docstring 'toggle search' %{
         remove-hooks window ui-search
         echo -markup "{Information}search disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-trailing-spaces-toggle -docstring 'toggle trailing spaces' %{
@@ -98,6 +103,7 @@ define-command -override ui-trailing-spaces-toggle -docstring 'toggle trailing s
         remove-highlighter window/trailing-spaces
         echo -markup "{Information}trailing spaces disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-todos-toggle -docstring 'toggle TODO comments' %{
@@ -108,6 +114,7 @@ define-command -override ui-todos-toggle -docstring 'toggle TODO comments' %{
         remove-highlighter window/todo-comments
         echo -markup "{Information}TODO comments disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-git-diff-toggle -docstring 'toggle git diff' %{
@@ -126,6 +133,7 @@ define-command -override ui-git-diff-toggle -docstring 'toggle git diff' %{
         remove-hooks window ui-git-diff
         echo -markup "{Information}git diff disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-lint-toggle -docstring 'toggle lint diagnostics' %{
@@ -150,6 +158,7 @@ define-command -override ui-lint-toggle -docstring 'toggle lint diagnostics' %{
         remove-hooks window lint-diagnostics
         echo -markup "{Information}lint diagnostics disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-cursorline-toggle -docstring 'toggle cursor line' %{
@@ -165,6 +174,7 @@ define-command -override ui-cursorline-toggle -docstring 'toggle cursor line' %{
         remove-hooks window ui-cursorline
         echo -markup "{Information}cursor line disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
 define-command -override ui-cursorcolumn-toggle -docstring 'toggle cursor column' %{
@@ -180,5 +190,6 @@ define-command -override ui-cursorcolumn-toggle -docstring 'toggle cursor column
         remove-hooks window ui-cursorcolumn
         echo -markup "{Information}cursor column disabled"
     }
+    trigger-user-hook ui-hl-changed
 }
 
