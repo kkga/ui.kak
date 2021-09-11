@@ -124,6 +124,7 @@ define-command -override ui-git-diff-toggle -docstring 'toggle git diff' %{
             cd "$(dirname "$kak_buffile")"
             git_dir="$(git rev-parse --show-toplevel 2>/dev/null)"
             [ -n "$git_dir" ] && echo "git update-diff"
+            [ -n "$git_dir" ] && echo "hook window -group ui-git-diff WinDisplay .* %{ git update-diff }"
             [ -n "$git_dir" ] && echo "hook window -group ui-git-diff BufWritePost .* %{ git update-diff }"
             [ -n "$git_dir" ] && echo "hook window -group ui-git-diff BufReload .* %{ git update-diff }"
         }
