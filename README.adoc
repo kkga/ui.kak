@@ -51,7 +51,7 @@ A `ui` link:https://github.com/mawww/kakoune/blob/master/doc/pages/modes.asciido
 *ui-cursorcolumn-toggle*::
     Display current cursor column using `CursorColumn` face.
 
-In addition to `ui-*-toggle`, each command is also available in the forms of `ui-*-enable` and `ui-*-disable`.
+In addition to `ui-\*-toggle`, each command is also available in the forms of `ui-*-enable` and `ui-*-disable`.
 
 == Configuration
 
